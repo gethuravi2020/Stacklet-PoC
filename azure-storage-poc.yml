@@ -1,0 +1,3 @@
+policies:
+  - name: azure-storage
+    resource: azure.storage
