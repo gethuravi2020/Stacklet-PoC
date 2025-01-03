@@ -14,4 +14,4 @@ policies:
     actions:
     - type: set-firewall-rules
       default-action: Deny
-      ip-rules: []
+      # ip-rules: []
