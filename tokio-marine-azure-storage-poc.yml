@@ -1,3 +1,14 @@
 policies:
-  - name: tokio-marine-azure-storage
-    resource: azure.storage
+- name: tmhcc-azure-storage-account-blob-public-access-realtime
+  resource: azure.storage
+  description: This policy triggers on tmhcc stroage account modification and checks for
+    public access
+  mode:
+    type: azure-event-grid
+    events:
+    - event: write
+      resourceProvider: Microsoft.Storage/storageAccounts
+  filters:
+  - type: value
+    key: properties.allowBlobPublicAccess
+    value: true
