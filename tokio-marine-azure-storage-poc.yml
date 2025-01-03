@@ -8,7 +8,7 @@ policies:
     - type: value
       key: properties.networkAcls.ipRules
       value_type: size
-      op: ne
+      op: eq
       value: 0
 
     actions:
