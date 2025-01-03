@@ -1,14 +1,17 @@
 policies:
-- name: tmhcc-azure-storage-account-blob-public-access-realtime
-  resource: azure.storage
-  description: This policy triggers on tmhcc stroage account modification and checks for
-    public access
-  mode:
-    type: azure-event-grid
-    events:
-    - event: write
-      resourceProvider: Microsoft.Storage/storageAccounts
-  filters:
-  - type: value
-    key: properties.allowBlobPublicAccess
-    value: true
+  - name: tmhcc-storage-block-public-access
+    description: |
+        Blocks public access to storage accounts with defined IP access rules.
+    resource: azure.storage
+
+    filters:
+    - type: value
+      key: properties.networkAcls.ipRules
+      value_type: size
+      op: ne
+      value: 0
+
+    actions:
+    - type: set-firewall-rules
+      default-action: Deny
+      ip-rules: []
