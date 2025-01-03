@@ -4,12 +4,12 @@ policies:
         Blocks public access to storage accounts with defined IP access rules.
     resource: azure.storage
 
-    filters:
-    - type: value
-      key: properties.networkAcls.ipRules
-      value_type: size
-      op: eq
-      value: 0
+    # filters:
+    # - type: value
+    #   key: properties.networkAcls.ipRules
+    #   value_type: size
+    #   op: eq
+    #   value: 0
 
     actions:
     - type: set-firewall-rules
