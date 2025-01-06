@@ -1,0 +1,6 @@
+policies:
+    - name: tmhcc-enforce-require-secure-transfer
+      resource: azure.storage
+      actions:
+      - type: require-secure-transfer
+        value: True
