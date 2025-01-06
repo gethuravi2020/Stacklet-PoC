@@ -1,17 +1,13 @@
 policies:
-  - name: tmhcc-storage-block-public-access
+  - name: tmhcc-enforce-storage-public-ip-disabled
     description: |
-        Blocks public access to storage accounts with defined IP access rules.
+      Ensure that public network access is disabled for TMHCC Azure Storage Accounts
+      to enhance security by preventing unauthorized access.
     resource: azure.storage
-
-    # filters:
-    # - type: value
-    #   key: properties.networkAcls.ipRules
-    #   value_type: size
-    #   op: eq
-    #   value: 0
-
+    filters:
+      - type: value
+        key: properties.networkAcls.defaultAction
+        value: Allow
     actions:
-    - type: set-firewall-rules
-      default-action: Deny
-      # ip-rules: []
+      - type: set-network-rules
+        default-action: Deny
