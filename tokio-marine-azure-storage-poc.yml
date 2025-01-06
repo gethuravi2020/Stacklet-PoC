@@ -9,5 +9,9 @@ policies:
         key: properties.networkAcls.defaultAction
         value: Allow
     actions:
-      - type: set-network-rules
+      - type: set-firewall-rules
+        bypass-rules:
+          - AzureServices
+        ip-rules: []
+        virtual-network-rules: []
         default-action: Deny
