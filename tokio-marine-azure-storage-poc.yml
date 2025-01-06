@@ -4,14 +4,12 @@ policies:
       Ensure that public network access is disabled for TMHCC Azure Storage Accounts
       to enhance security by preventing unauthorized access.
     resource: azure.storage
-    # filters:
-    #   - type: value
-    #     key: properties.networkAcls.defaultAction
-    #     value: Allow
+    filters:
+      - type: value
+        key: properties.networkAcls.defaultAction
+        value: Allow
     actions:
       - type: set-firewall-rules
-        bypass-rules:
-          - AzureServices
         ip-rules: []
         virtual-network-rules: []
         default-action: Deny
