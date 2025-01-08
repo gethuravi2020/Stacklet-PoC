@@ -1,7 +1,13 @@
 policies:
   - name: tmhcc-azure-functionapps-http-version
-    resource: azure.functionapp
+    resource: azure.resource
     filters:
+      - type: value
+        key: type
+        value: Microsoft.Web/sites
+      - type: value
+        key: kind
+        value: functionapp
       - type: value
         key: properties.siteConfig.http20Enabled
         value: false
@@ -9,3 +15,4 @@ policies:
       - type: modify-site-config
         siteConfig:
           http20Enabled: true
+
