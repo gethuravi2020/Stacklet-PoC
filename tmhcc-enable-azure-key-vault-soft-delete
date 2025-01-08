@@ -1,0 +1,11 @@
+policies:
+  - name: tmhcc-enable-azure-key-vault-soft-delete
+    resource: azure.keyvault
+    filters:
+      - type: value
+        key: properties.enableSoftDelete
+        value: false
+    actions:
+      - type: update
+        key: properties.enableSoftDelete
+        value: true
